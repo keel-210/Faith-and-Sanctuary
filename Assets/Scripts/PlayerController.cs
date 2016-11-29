@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
 
     private GameObject sanc;
     private int phase;
+    private bool IsMoving;
 	void Start () {
         sanc = GameObject.Find("Sanctuaries");
         phase = sanc.GetComponent<SanctuariesController>().phase;
@@ -24,6 +25,14 @@ public class PlayerController : MonoBehaviour {
                 float movehor = Input.GetAxisRaw("Horizontal");
                 float movever = Input.GetAxisRaw("Vertical");
                 Vector3 movement = new Vector3(movehor, 0, movever);
+                if(movement == Vector3.zero)
+                {
+
+                }
+                else
+                {
+
+                }
                 move++;
             }
             else if(move > 3)
