@@ -1,0 +1,35 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{445C981B-3506-A194-21C2-2311861FE958}") = "Faith and Sanctuary", "Assembly-CSharp-firstpass.csproj", "{BCF1E624-1D52-58D5-02A1-84843693DC75}"
+EndProject
+Project("{445C981B-3506-A194-21C2-2311861FE958}") = "Faith and Sanctuary", "Assembly-CSharp.csproj", "{3A6758A0-6F67-0560-2091-3D91E3E83BFC}"
+EndProject
+Project("{445C981B-3506-A194-21C2-2311861FE958}") = "Faith and Sanctuary", "Assembly-CSharp-Editor.csproj", "{FC502452-FAE3-307C-52A1-5B7225DE0294}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BCF1E624-1D52-58D5-02A1-84843693DC75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCF1E624-1D52-58D5-02A1-84843693DC75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCF1E624-1D52-58D5-02A1-84843693DC75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCF1E624-1D52-58D5-02A1-84843693DC75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A6758A0-6F67-0560-2091-3D91E3E83BFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A6758A0-6F67-0560-2091-3D91E3E83BFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A6758A0-6F67-0560-2091-3D91E3E83BFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A6758A0-6F67-0560-2091-3D91E3E83BFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC502452-FAE3-307C-52A1-5B7225DE0294}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC502452-FAE3-307C-52A1-5B7225DE0294}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC502452-FAE3-307C-52A1-5B7225DE0294}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC502452-FAE3-307C-52A1-5B7225DE0294}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
