@@ -6,7 +6,6 @@ public class SanctuariesController : MonoBehaviour {
 
     public int wave = 1;
     public int phase = 1;
-    public bool PlayerIsMoving = false;
 
     public List<List<GameObject>> fields = new List<List<GameObject>>();
     private GameObject player;
@@ -39,7 +38,6 @@ public class SanctuariesController : MonoBehaviour {
                 if(phase == 1)
                 {
                     HereIsSanctuary(0, 0, 'g');
-                    PlayerIsMoving = true;
                     phase++;
                 }
                 else if(phase == 2)
@@ -48,7 +46,6 @@ public class SanctuariesController : MonoBehaviour {
                 }
                 else if(phase == 3)
                 {
-                    PlayerIsMoving = false;
                     if (fields[(int)player.transform.position.x][(int)player.transform.position.z].GetComponent<FieldController>().red
                         &&(player.GetComponent<PlayerController>().faith == 'b' || player.GetComponent<PlayerController>().faith == 'g'))
                     {
@@ -99,6 +96,6 @@ public class SanctuariesController : MonoBehaviour {
         {
             fields[row][col].GetComponent<FieldController>().green = true;
         }
-
+        Instantiate(Resources.Load("Prefabs/HereIsSanc"), new Vector3(row * 2, 0.1f * (row + col) + 1, col * 2), Quaternion.identity);
     }
 }
