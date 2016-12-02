@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour {
         {
             //Debug.Log("moved");
             
-            if (move <= 3)
+            if (move <= 4)
             {
                 float movehor = Input.GetAxisRaw("Horizontal");
                 float movever = Input.GetAxisRaw("Vertical");
@@ -38,15 +38,17 @@ public class PlayerController : MonoBehaviour {
                 {
                     IsMoving = true;
                     NowPosition = transform.position;
-                    NextPosition = transform.position + movement;
-                    vero = 2 * movement;
+                    NextPosition = transform.position + 2*movement;
+                    NextPosition += new Vector3(0, 0.1f, 0);
+                    vero = 2*movement;
                     forUndo.Push(transform.position);
                 }
                 if(movement == Vector3.left && !IsMoving)
                 {
                     IsMoving = true;
                     NowPosition = transform.position;
-                    NextPosition = transform.position + movement;
+                    NextPosition = transform.position + 2*movement;
+                    NextPosition += new Vector3(0, -0.1f, 0);
                     vero = 2 * movement;
                     forUndo.Push(transform.position);
                 }
@@ -54,8 +56,8 @@ public class PlayerController : MonoBehaviour {
                 {
                     IsMoving = true;
                     NowPosition = transform.position;
-                    NextPosition = transform.position + movement;
-                    NextPosition += new Vector3(0, 0.1f * (NextPosition.x + NextPosition.z), 0);
+                    NextPosition = transform.position + 2*movement;
+                    NextPosition += new Vector3(0, 0.1f, 0);
                     vero = 2 * movement;
                     forUndo.Push(transform.position);
                 }
@@ -63,7 +65,8 @@ public class PlayerController : MonoBehaviour {
                 {
                     IsMoving = true;
                     NowPosition = transform.position;
-                    NextPosition = transform.position + movement;
+                    NextPosition = transform.position + 2*movement;
+                    NextPosition += new Vector3(0, -0.1f, 0);
                     vero = 2 * movement;
                     forUndo.Push(transform.position);
                 }
@@ -88,7 +91,7 @@ public class PlayerController : MonoBehaviour {
                 }
                 
             }
-            else if(move > 3)
+            else if(move > 4)
             {
                 forUndo.Clear();
                 move = 0;

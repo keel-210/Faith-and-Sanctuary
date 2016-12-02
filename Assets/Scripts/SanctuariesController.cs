@@ -46,17 +46,17 @@ public class SanctuariesController : MonoBehaviour {
                 }
                 else if(phase == 3)
                 {
-                    if (fields[(int)player.transform.position.x][(int)player.transform.position.z].GetComponent<FieldController>().red
+                    if (fields[(int)player.transform.position.x/2][(int)player.transform.position.z/2].GetComponent<FieldController>().red
                         &&(player.GetComponent<PlayerController>().faith == 'b' || player.GetComponent<PlayerController>().faith == 'g'))
                     {
                         Debug.Log("dbr");
                     }
-                    if (fields[(int)player.transform.position.x][(int)player.transform.position.z].GetComponent<FieldController>().blue
+                    if (fields[(int)player.transform.position.x/2][(int)player.transform.position.z/2].GetComponent<FieldController>().blue
                         && (player.GetComponent<PlayerController>().faith == 'r' || player.GetComponent<PlayerController>().faith == 'g'))
                     {
                         Debug.Log("dbb");
                     }
-                    if (fields[(int)player.transform.position.x][(int)player.transform.position.z].GetComponent<FieldController>().green
+                    if (fields[(int)player.transform.position.x/2][(int)player.transform.position.z/2].GetComponent<FieldController>().green
                         && (player.GetComponent<PlayerController>().faith == 'r' || player.GetComponent<PlayerController>().faith == 'b'))
                     {
                         Debug.Log("dbg");
