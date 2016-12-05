@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour {
         {
             //Debug.Log("moved");
             
-            if (move <= 4)
+            if (move <= 3)
             {
                 float movehor = Input.GetAxisRaw("Horizontal");
                 float movever = Input.GetAxisRaw("Vertical");
@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour {
                 }
                 
             }
-            else if(move > 4)
+            else if(move > 3)
             {
                 forUndo.Clear();
                 move = 0;

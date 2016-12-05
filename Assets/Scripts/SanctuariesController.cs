@@ -16,14 +16,14 @@ public class SanctuariesController : MonoBehaviour {
         player = GameObject.Find("Player");
         int row = 5;
         int column = 3;
-        GameObject.Find("Main Camera").GetComponent<MaincameraController>().view = new Vector3(column, 0, row);
+        GameObject.Find("Main Camera").GetComponent<MaincameraController>().view = new Vector3(row-1, 0, column-1);
         Object field = Resources.Load("Prefabs/Field");
         for(int i = 0; i < row; i++)
         {
             fields.Add(new List<GameObject>());
             for(int j = 0; j < column; j++)
             {
-                GameObject f = (GameObject)Instantiate(field, new Vector3(j * 2, 0.1f * (i + j), i * 2), Quaternion.identity);
+                GameObject f = (GameObject)Instantiate(field, new Vector3(i * 2, 0.1f * (i + j), j * 2), Quaternion.identity);
                 fields[i].Add(f);
                 f.transform.parent = transform;
             }
@@ -37,7 +37,8 @@ public class SanctuariesController : MonoBehaviour {
             case 1:
                 if(phase == 1)
                 {
-                    HereIsSanctuary(0, 0, 'g');
+                    HereIsSanctuary(1, 2, 'g');
+                    HereIsSanctuary(1, 2, 'r');
                     phase++;
                 }
                 else if(phase == 2)
