@@ -8,9 +8,9 @@ public class StackForUndo : MonoBehaviour {
     public void MakeStack(GameObject obj)
     {
         ObjAndStack oas = new ObjAndStack();
-        OAS.Add(oas);
-        oas.obj = obj;
         oas.pos.Push(obj.transform.position);
+        oas.obj = obj;
+        OAS.Add(oas);
     }
 	
     public void PushStack(GameObject obj)

@@ -14,14 +14,19 @@ public class BasicMovement : MonoBehaviour {
     private Vector3 vero;
     private int row, col;
     private GameObject sanc;
+    private StackForUndo sfu;
+    void Start()
+    {
+        sanc = GameObject.Find("Sanctuaries");
+        row = sanc.GetComponent<SizeOfSanc>().row;
+        col = sanc.GetComponent<SizeOfSanc>().column;
+        sfu = GameObject.Find("Canvas").transform.FindChild("Undo").GetComponent<StackForUndo>();
+    }
     public bool Set (GameObject MoveObj, Vector3 movement)
     {
         if (!IsMoving)
         {
             obj = MoveObj;
-            sanc = GameObject.Find("Sanctuaries");
-            row = sanc.GetComponent<SizeOfSanc>().row;
-            col = sanc.GetComponent<SizeOfSanc>().column;
             HasMoved = false;
             if (movement == Vector3.forward)
             {
@@ -30,9 +35,11 @@ public class BasicMovement : MonoBehaviour {
                 if (NextPosition.x >= -0.1 && NextPosition.x <= (row -1) * 2 + 0.1 && NextPosition.z >= -0.1 && NextPosition.z <= (col-1) * 2 + 0.1)
                 {
                     IsMoving = true;
+                    vero = 2 * MoveObj.transform.forward;
+                    NextRotation = new Quaternion(0, 0, 0, 0);
+                    sfu.PushStack(MoveObj);
                 }
-                vero = 2 * MoveObj.transform.forward;
-                NextRotation = new Quaternion(0, 0, 0, 0);
+                
             }
             if (movement == Vector3.back)
             {

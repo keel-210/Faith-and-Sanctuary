@@ -7,17 +7,16 @@ public class PlayerController : MonoBehaviour {
 
     public char faith;
     public int HowMuchMoved = 1;
-    public Stack<Vector3> forUndo = new Stack<Vector3>();
-    public Stack<Quaternion> forUndoQu = new Stack<Quaternion>();
 
     private GameObject sanc;
     private int phase;
     private BasicMovement move;
-    void Start ()
+    public void Start ()
     {
         move = gameObject.AddComponent<BasicMovement>();
         sanc = GameObject.Find("Sanctuaries");
         phase = sanc.GetComponent<SanctuariesController>().phase;
+        GameObject.Find("Canvas").transform.Find("Undo").GetComponent<StackForUndo>().MakeStack(this.gameObject);
     }
 	
 	void Update () {
@@ -41,7 +40,6 @@ public class PlayerController : MonoBehaviour {
             }
             else if (HowMuchMoved >= 3)
             {
-                forUndo.Clear();
                 HowMuchMoved = 1;
                 sanc.GetComponent<SanctuariesController>().phase += 1;
             }
