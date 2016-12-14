@@ -6,16 +6,15 @@ public class SanctuariesController : MonoBehaviour {
 
     public int wave = 1;
     public int phase = 1;
-
+    
     public List<List<GameObject>> fields = new List<List<GameObject>>();
     private GameObject player;
    
     void Start ()
     {
-
+        int row = GetComponent<SizeOfSanc>().row;
+        int column = GetComponent<SizeOfSanc>().column;
         player = GameObject.Find("Player");
-        int row = 5;
-        int column = 3;
         GameObject.Find("Main Camera").GetComponent<MaincameraController>().view = new Vector3(row-1, 0, column-1);
         Object field = Resources.Load("Prefabs/Field");
         for(int i = 0; i < row; i++)
@@ -97,6 +96,6 @@ public class SanctuariesController : MonoBehaviour {
         {
             fields[row][col].GetComponent<FieldController>().green = true;
         }
-        Instantiate(Resources.Load("Prefabs/HereIsSanc"), new Vector3(row * 2, 0.1f * (row + col) + 1, col * 2), Quaternion.identity);
+        Instantiate(Resources.Load("Prefabs/HereIsSanc"), new Vector3(row * 2, 0.1f * (row + col) + 2.4f, col * 2), Quaternion.Euler(-90, -45, -90));
     }
 }

@@ -6,95 +6,43 @@ using UnityEditor;
 public class PlayerController : MonoBehaviour {
 
     public char faith;
-    public int move = 1;
+    public int HowMuchMoved = 1;
+    public Stack<Vector3> forUndo = new Stack<Vector3>();
+    public Stack<Quaternion> forUndoQu = new Stack<Quaternion>();
 
     private GameObject sanc;
     private int phase;
-    private bool IsMoving;
-    private float MoveTimer;
-    private Vector3 NextPosition;
-    private Vector3 vero;
-
-    private Stack<Vector3> forUndo = new Stack<Vector3>();
-	void Start () {
+    private BasicMovement move;
+    void Start ()
+    {
+        move = gameObject.AddComponent<BasicMovement>();
         sanc = GameObject.Find("Sanctuaries");
         phase = sanc.GetComponent<SanctuariesController>().phase;
-	}
+    }
 	
 	void Update () {
         phase = sanc.GetComponent<SanctuariesController>().phase;
         if (phase == 2)
         {
-            //Debug.Log("moved");
-            
-            if (move <= 3)
+            if (HowMuchMoved < 3)
             {
                 float movehor = Input.GetAxisRaw("Horizontal");
                 float movever = Input.GetAxisRaw("Vertical");
                 Vector3 movement = new Vector3(movehor, 0, movever);
-                Vector3 NowPosition = Vector3.zero;
                 
-                if(movement == Vector3.right && !IsMoving)
+                if (movement != Vector3.zero)
                 {
-                    IsMoving = true;
-                    NowPosition = transform.position;
-                    NextPosition = transform.position + 2*movement;
-                    NextPosition += new Vector3(0, 0.1f, 0);
-                    vero = 2*movement;
-                    forUndo.Push(transform.position);
+                    move.Set(gameObject,movement);
                 }
-                if(movement == Vector3.left && !IsMoving)
+                if (move.Update())
                 {
-                    IsMoving = true;
-                    NowPosition = transform.position;
-                    NextPosition = transform.position + 2*movement;
-                    NextPosition += new Vector3(0, -0.1f, 0);
-                    vero = 2 * movement;
-                    forUndo.Push(transform.position);
+                    HowMuchMoved++;
                 }
-                if(movement == Vector3.forward && !IsMoving)
-                {
-                    IsMoving = true;
-                    NowPosition = transform.position;
-                    NextPosition = transform.position + 2*movement;
-                    NextPosition += new Vector3(0, 0.1f, 0);
-                    vero = 2 * movement;
-                    forUndo.Push(transform.position);
-                }
-                if(movement == Vector3.back && !IsMoving)
-                {
-                    IsMoving = true;
-                    NowPosition = transform.position;
-                    NextPosition = transform.position + 2*movement;
-                    NextPosition += new Vector3(0, -0.1f, 0);
-                    vero = 2 * movement;
-                    forUndo.Push(transform.position);
-                }
-                if (IsMoving)
-                {
-                    MoveTimer += Time.deltaTime;
-                    if(MoveTimer < 1f)
-                    {
-                        transform.position = Vector3.SmoothDamp(transform.position,NextPosition,ref vero,0.25f);
-                        Debug.Log(NextPosition);
-                    }
-                    else
-                    {
-                        
-                        transform.position = NextPosition;
-                        
-                        move++;
-                        Debug.Log("moved");
-                        IsMoving = false;
-                        MoveTimer = 0;
-                    }
-                }
-                
             }
-            else if(move > 3)
+            else if (HowMuchMoved >= 3)
             {
                 forUndo.Clear();
-                move = 0;
+                HowMuchMoved = 1;
                 sanc.GetComponent<SanctuariesController>().phase += 1;
             }
             
