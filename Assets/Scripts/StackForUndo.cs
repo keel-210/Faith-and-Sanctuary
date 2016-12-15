@@ -5,6 +5,7 @@ using UnityEngine;
 public class StackForUndo : MonoBehaviour {
 
     private List<ObjAndStack> OAS = new List<ObjAndStack>();
+
     public void MakeStack(GameObject obj)
     {
         ObjAndStack oas = new ObjAndStack();
@@ -42,6 +43,6 @@ public class StackForUndo : MonoBehaviour {
     private class ObjAndStack
     {
         public GameObject obj;
-        public Stack<Vector3> pos;
+        public Stack<Vector3> pos = new Stack<Vector3>();
     }
 }

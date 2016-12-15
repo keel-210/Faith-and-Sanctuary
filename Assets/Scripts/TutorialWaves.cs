@@ -5,27 +5,24 @@ using UnityEngine;
 public class TutorialWaves : SanctuariesController {
 
     private GameObject player;
-    void Start()
+
+    protected override void WaveController()
     {
         player = GameObject.Find("Player");
-    }
-
-    protected override void WaveControll()
-    {
         switch (wave)
         {
             case 1:
-                if (phase == 1)
+                if (base.phase == 1)
                 {
                     HereIsSanctuary(1, 2, 'g');
                     HereIsSanctuary(1, 2, 'r');
-                    phase++;
+                    base.phase++;
                 }
-                else if (phase == 2)
+                else if (base.phase == 2)
                 {
 
                 }
-                else if (phase == 3)
+                else if (base.phase == 3)
                 {
                     if (fields[(int)player.transform.position.x / 2][(int)player.transform.position.z / 2].GetComponent<FieldController>().red
                         && (player.GetComponent<PlayerController>().faith == 'b' || player.GetComponent<PlayerController>().faith == 'g'))

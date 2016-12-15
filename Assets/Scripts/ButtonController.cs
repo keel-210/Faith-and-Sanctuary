@@ -8,10 +8,10 @@ public class ButtonController : MonoBehaviour {
 
     public void OnClick()
     {
-        button.OnClick(this.gameObject.name);
+        button.Click(this.gameObject.name);
     }
 
-    protected virtual void OnClick(string objectname)
+    protected virtual void Click(string objectname)
     {
         Debug.Log("bb");
     }

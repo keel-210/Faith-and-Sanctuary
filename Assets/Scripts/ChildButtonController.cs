@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChildButtonController : ButtonController {
 
-    protected override void OnClick(string objectname)
+    protected override void Click(string objectname)
     {
         if ("GoStraight".Equals(objectname))
         {
