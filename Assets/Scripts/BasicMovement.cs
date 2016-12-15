@@ -63,9 +63,9 @@ public class BasicMovement : MonoBehaviour {
         
         return (IsMoving);
     }
-	public bool Update ()
+	public void Update ()
     {
-        HasMoved = false;
+        
         if (IsMoving)
         {
             MoveTimer += Time.deltaTime;
@@ -79,7 +79,10 @@ public class BasicMovement : MonoBehaviour {
                 obj.transform.position = NextPosition;
 
                 IsMoving = false;
-                HasMoved = true;
+                if(obj.name == "Player")
+                {
+                    obj.transform.GetComponent<PlayerController>().HowMuchMoved++;
+                }
                 MoveTimer = 0;
             }
 
@@ -96,7 +99,5 @@ public class BasicMovement : MonoBehaviour {
 
             }
         }
-        
-        return (HasMoved);
     }
 }

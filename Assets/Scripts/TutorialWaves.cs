@@ -5,10 +5,17 @@ using UnityEngine;
 public class TutorialWaves : SanctuariesController {
 
     private GameObject player;
+    private StackForUndo sfu;
+
+    void Start()
+    {
+        player = GameObject.Find("Player");
+        sfu = GameObject.Find("Canvas").transform.Find("Undo").GetComponent<StackForUndo>();
+    }
 
     protected override void WaveController()
     {
-        player = GameObject.Find("Player");
+        
         switch (wave)
         {
             case 1:
@@ -39,6 +46,8 @@ public class TutorialWaves : SanctuariesController {
                     {
                         Debug.Log("dbg");
                     }
+                    sfu.Clear();
+                    
                 }
                 break;
             

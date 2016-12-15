@@ -14,8 +14,6 @@ public class SanctuariesController : MonoBehaviour {
         if (sanc)
         {
             sanc.WaveController();
-            wave = sanc.wave;
-            phase = sanc.phase;
         }
     }
     

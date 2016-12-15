@@ -6,21 +6,21 @@ using UnityEditor;
 public class PlayerController : MonoBehaviour {
 
     public char faith;
-    public int HowMuchMoved = 1;
+    public int HowMuchMoved = 0;
 
-    private GameObject sanc;
+    private SanctuariesController sanc;
     private int phase;
     private BasicMovement move;
     public void Start ()
     {
         move = gameObject.AddComponent<BasicMovement>();
-        sanc = GameObject.Find("Sanctuaries");
-        phase = sanc.GetComponent<SanctuariesController>().phase;
+        sanc = GameObject.Find("Sanctuaries").GetComponent<SanctuariesController>().sanc;
+        phase = sanc.phase;
         GameObject.Find("Canvas").transform.Find("Undo").GetComponent<StackForUndo>().MakeStack(this.gameObject);
     }
 	
 	void Update () {
-        phase = sanc.GetComponent<SanctuariesController>().phase;
+        phase = sanc.phase;
         if (phase == 2)
         {
             if (HowMuchMoved < 3)
@@ -33,15 +33,11 @@ public class PlayerController : MonoBehaviour {
                 {
                     move.Set(gameObject,movement);
                 }
-                if (move.Update())
-                {
-                    HowMuchMoved++;
-                }
             }
             else if (HowMuchMoved >= 3)
             {
                 HowMuchMoved = 1;
-                sanc.GetComponent<SanctuariesController>().phase += 1;
+                sanc.phase += 1;
             }
             
         }

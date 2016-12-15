@@ -7,7 +7,7 @@ public class FieldController : MonoBehaviour {
     private SanctuariesController SancMaster;
     void Start()
     {
-        SancMaster = transform.parent.gameObject.GetComponent<SanctuariesController>();
+        SancMaster = transform.parent.gameObject.GetComponent<SanctuariesController>().sanc;
         
     }
     void Update()

@@ -58,6 +58,6 @@ public class ChildButtonController : ButtonController {
 
     private void UndoClick()
     {
-        transform.GetComponent<StackForUndo>().Undo();
+        GameObject.Find("Canvas").transform.Find("Undo").GetComponent<StackForUndo>().Undo();
     }
 }
