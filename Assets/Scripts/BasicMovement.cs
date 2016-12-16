@@ -35,9 +35,13 @@ public class BasicMovement : MonoBehaviour {
                 if (NextPosition.x >= -0.1 && NextPosition.x <= (row -1) * 2 + 0.1 && NextPosition.z >= -0.1 && NextPosition.z <= (col-1) * 2 + 0.1)
                 {
                     IsMoving = true;
-                    vero = 2 * MoveObj.transform.forward;
+                    vero = MoveObj.transform.forward;
                     NextRotation = new Quaternion(0, 0, 0, 0);
                     sfu.PushStack(MoveObj);
+                    if (obj.name == "Player")
+                    {
+                        transform.FindChild("Footman").GetComponent<PlayerAnimationController>().Walk();
+                    }
                 }
                 
             }
@@ -72,7 +76,7 @@ public class BasicMovement : MonoBehaviour {
 
             if (MoveTimer < 1f && NextPosition != Vector3.zero)
             {
-                obj.transform.position = Vector3.SmoothDamp(obj.transform.position, NextPosition, ref vero, 0.25f);
+                obj.transform.position = Vector3.SmoothDamp(obj.transform.position, NextPosition, ref vero, 0.5f);
             }
             else if (NextPosition != Vector3.zero)
             {
