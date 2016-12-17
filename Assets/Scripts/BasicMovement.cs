@@ -7,7 +7,6 @@ public class BasicMovement : MonoBehaviour {
     public Vector3 movement;
 
     public bool IsMoving;
-    private bool HasMoved;
     private float MoveTimer;
     private Vector3 NextPosition;
     private Quaternion NextRotation;
@@ -27,7 +26,6 @@ public class BasicMovement : MonoBehaviour {
         if (!IsMoving)
         {
             obj = MoveObj;
-            HasMoved = false;
             if (movement == Vector3.forward)
             {
                 NextPosition = MoveObj.transform.position + 2 * MoveObj.transform.forward;
@@ -35,9 +33,13 @@ public class BasicMovement : MonoBehaviour {
                 if (NextPosition.x >= -0.1 && NextPosition.x <= (row -1) * 2 + 0.1 && NextPosition.z >= -0.1 && NextPosition.z <= (col-1) * 2 + 0.1)
                 {
                     IsMoving = true;
-                    vero = 2 * MoveObj.transform.forward;
+                    vero = MoveObj.transform.forward;
                     NextRotation = new Quaternion(0, 0, 0, 0);
                     sfu.PushStack(MoveObj);
+                    if (obj.name == "Player")
+                    {
+                        transform.FindChild("Footman").GetComponent<Animator>().SetTrigger("walkBattleForward");
+                    }
                 }
                 
             }
@@ -72,7 +74,7 @@ public class BasicMovement : MonoBehaviour {
 
             if (MoveTimer < 1f && NextPosition != Vector3.zero)
             {
-                obj.transform.position = Vector3.SmoothDamp(obj.transform.position, NextPosition, ref vero, 0.25f);
+                obj.transform.position = Vector3.SmoothDamp(obj.transform.position, NextPosition, ref vero, 0.4f);
             }
             else if (NextPosition != Vector3.zero)
             {
