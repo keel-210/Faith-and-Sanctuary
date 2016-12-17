@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57e0ccaa4c859bd4f8a1ccc436557045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faith: 98
+  faith: 114
   HowMuchMoved: 0
 --- !u!1001 &190526568
 Prefab:
