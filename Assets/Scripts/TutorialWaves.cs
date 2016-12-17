@@ -6,11 +6,26 @@ public class TutorialWaves : SanctuariesController {
 
     private GameObject player;
     private StackForUndo sfu;
+    private bool SancHasLitten;
 
     void Start()
     {
         player = GameObject.Find("Player");
         sfu = GameObject.Find("Canvas").transform.Find("Undo").GetComponent<StackForUndo>();
+        int row = transform.GetComponent<SizeOfSanc>().row;
+        int column = transform.GetComponent<SizeOfSanc>().column;
+        GameObject.Find("Main Camera").GetComponent<MaincameraController>().view = new Vector3(row - 1, 0, column - 1);
+        Object field = Resources.Load("Prefabs/Field");
+        for (int i = 0; i < row; i++)
+        {
+            fields.Add(new List<FieldController>());
+            for (int j = 0; j < column; j++)
+            {
+                GameObject f = (GameObject)Instantiate(field, new Vector3(i * 2, 0.1f * (i + j), j * 2), Quaternion.identity);
+                fields[i].Add(f.GetComponent<FieldController>());
+                f.transform.parent = transform;
+            }
+        }
     }
 
     protected override void WaveController()
@@ -19,36 +34,29 @@ public class TutorialWaves : SanctuariesController {
         switch (wave)
         {
             case 1:
-                if (base.phase == 1)
+                if (phase == 1)
                 {
+                    SancHasLitten = false;
                     HereIsSanctuary(1, 2, 'g');
                     HereIsSanctuary(1, 2, 'r');
-                    base.phase++;
+                    phase++;
                 }
-                else if (base.phase == 2)
+                else if (phase == 2)
                 {
 
                 }
-                else if (base.phase == 3)
+                else if (phase == 3)
                 {
-                    if (fields[(int)player.transform.position.x / 2][(int)player.transform.position.z / 2].GetComponent<FieldController>().red
-                        && (player.GetComponent<PlayerController>().faith == 'b' || player.GetComponent<PlayerController>().faith == 'g'))
+                    if (!SancHasLitten)
                     {
-                        Debug.Log("dbr");
+                        SancLight();
+                        SancHasLitten = true;
                     }
-                    if (fields[(int)player.transform.position.x / 2][(int)player.transform.position.z / 2].GetComponent<FieldController>().blue
-                        && (player.GetComponent<PlayerController>().faith == 'r' || player.GetComponent<PlayerController>().faith == 'g'))
-                    {
-                        Debug.Log("dbb");
-                    }
-                    if (fields[(int)player.transform.position.x / 2][(int)player.transform.position.z / 2].GetComponent<FieldController>().green
-                        && (player.GetComponent<PlayerController>().faith == 'r' || player.GetComponent<PlayerController>().faith == 'b'))
-                    {
-                        Debug.Log("dbg");
-                    }
+                    Death();
                     sfu.Clear();
-                    
+                    Reset();
                 }
+                
                 break;
             
             default:
@@ -60,16 +68,67 @@ public class TutorialWaves : SanctuariesController {
     {
         if (faith == 'r')
         {
-            fields[row][col].GetComponent<FieldController>().red = true;
+            fields[row][col].red = true;
         }
         if (faith == 'b')
         {
-            fields[row][col].GetComponent<FieldController>().blue = true;
+            fields[row][col].blue = true;
         }
         if (faith == 'g')
         {
-            fields[row][col].GetComponent<FieldController>().green = true;
+            fields[row][col].green = true;
         }
         Instantiate(Resources.Load("Prefabs/HereIsSanc"), new Vector3(row * 2, 0.1f * (row + col) + 2.4f, col * 2), Quaternion.Euler(-90, -45, -90));
+    }
+
+    void Death()
+    {
+        if (fields[Mathf.RoundToInt(player.transform.position.x / 2)][Mathf.RoundToInt(player.transform.position.z / 2)].red
+                        && (player.GetComponent<PlayerController>().faith == 'b' || player.GetComponent<PlayerController>().faith == 'g'))
+        {
+            Debug.Log("dbr");
+            player.transform.FindChild("Footman").GetComponent<Animator>().SetTrigger("getHit");
+        }
+        if (fields[Mathf.RoundToInt(player.transform.position.x / 2)][Mathf.RoundToInt(player.transform.position.z / 2)].blue
+            && (player.GetComponent<PlayerController>().faith == 'r' || player.GetComponent<PlayerController>().faith == 'g'))
+        {
+            Debug.Log("dbb");
+            player.transform.FindChild("Footman").GetComponent<Animator>().SetTrigger("getHit");
+        }
+        if (fields[Mathf.RoundToInt(player.transform.position.x / 2)][Mathf.RoundToInt(player.transform.position.z / 2)].green
+            && (player.GetComponent<PlayerController>().faith == 'r' || player.GetComponent<PlayerController>().faith == 'b'))
+        {
+            Debug.Log("dbg");
+            player.transform.FindChild("Footman").GetComponent<Animator>().SetTrigger("getHit");
+        }
+    }
+
+    void Reset()
+    {
+        int row = transform.GetComponent<SizeOfSanc>().row;
+        int col = transform.GetComponent<SizeOfSanc>().column;
+        for (int i = 0; i < row; i++)
+        {
+            for(int j = 0; j < col; j++)
+            {
+                fields[i][j].red = false;
+                fields[i][j].blue = false;
+                fields[i][j].green = false;
+            }
+        }
+        
+    }
+
+    void SancLight()
+    {
+        int row = transform.GetComponent<SizeOfSanc>().row;
+        int col = transform.GetComponent<SizeOfSanc>().column;
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < col; j++)
+            {
+                fields[i][j].Light();
+            }
+        }
     }
 }
