@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57e0ccaa4c859bd4f8a1ccc436557045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faith: 114
+  faith: 98
   HowMuchMoved: 0
 --- !u!1001 &190526568
 Prefab:
@@ -725,7 +725,6 @@ GameObject:
   - component: {fileID: 1034313299}
   - component: {fileID: 1034313298}
   - component: {fileID: 1034313300}
-  - component: {fileID: 1034313301}
   m_Layer: 0
   m_Name: Sanctuaries
   m_TagString: Untagged
@@ -774,17 +773,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 5
   column: 3
---- !u!114 &1034313301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1034313297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a367af213469a0f4b81a5479f434a069, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1057796009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1522,6 +1510,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1769272471}
   - component: {fileID: 1769272470}
+  - component: {fileID: 1769272472}
   m_Layer: 0
   m_Name: Tutorial
   m_TagString: Untagged
@@ -1556,6 +1545,19 @@ Transform:
   m_Father: {fileID: 1034313299}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1769272472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1769272469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd2fd8fdc5dbdf14b9169b56c611ca2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  row: 5
+  column: 3
 --- !u!1 &1837540740
 GameObject:
   m_ObjectHideFlags: 0
