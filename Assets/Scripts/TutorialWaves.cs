@@ -7,10 +7,13 @@ public class TutorialWaves : SanctuariesController {
     private GameObject player;
     private StackForUndo sfu;
     private bool SancHasLitten;
+    private bool SancHasDeployed;
+    private MessageMaker message;
 
     void Start()
     {
         player = GameObject.Find("Player");
+        message = transform.parent.gameObject.GetComponent<MessageMaker>();
         sfu = GameObject.Find("Canvas").transform.Find("Undo").GetComponent<StackForUndo>();
         int row = transform.GetComponent<SizeOfSanc>().row;
         int column = transform.GetComponent<SizeOfSanc>().column;
@@ -37,9 +40,13 @@ public class TutorialWaves : SanctuariesController {
                 if (phase == 1)
                 {
                     SancHasLitten = false;
-                    HereIsSanctuary(1, 2, 'g');
-                    HereIsSanctuary(1, 2, 'r');
-                    phase++;
+                    if (!SancHasDeployed)
+                    {
+                        HereIsSanctuary(1, 2, 'g');
+                        HereIsSanctuary(1, 2, 'r');
+                        SancHasDeployed = true;
+                    }
+                    Message();
                 }
                 else if (phase == 2)
                 {
@@ -54,11 +61,24 @@ public class TutorialWaves : SanctuariesController {
                     }
                     Death();
                     sfu.Clear();
-                    Reset();
+                    NextWave();
                 }
                 
                 break;
-            
+            case 2:
+                if (phase == 1)
+                {
+
+                }
+                else if (phase == 2)
+                {
+
+                }
+                else if (phase == 3)
+                {
+
+                }
+                break;
             default:
                 break;
         }
@@ -81,6 +101,10 @@ public class TutorialWaves : SanctuariesController {
         Instantiate(Resources.Load("Prefabs/HereIsSanc"), new Vector3(row * 2, 0.1f * (row + col) + 2.4f, col * 2), Quaternion.Euler(-90, -45, -90));
     }
 
+    void Message()
+    {
+        message.Make(phase);
+    }
     void Death()
     {
         if (fields[Mathf.RoundToInt(player.transform.position.x / 2)][Mathf.RoundToInt(player.transform.position.z / 2)].red
@@ -103,7 +127,7 @@ public class TutorialWaves : SanctuariesController {
         }
     }
 
-    void Reset()
+    void NextWave()
     {
         int row = transform.GetComponent<SizeOfSanc>().row;
         int col = transform.GetComponent<SizeOfSanc>().column;
@@ -116,7 +140,8 @@ public class TutorialWaves : SanctuariesController {
                 fields[i][j].green = false;
             }
         }
-        
+        SancHasDeployed = false;
+        SancHasLitten = false;
     }
 
     void SancLight()
