@@ -13,18 +13,21 @@ public class TutorialMessage : MessageMaker {
             panel.SetActive(true);
             bool next = (0 < (Input.GetAxisRaw("Next1") + Input.GetAxisRaw("Next2")));
 
-            if(stage == 0)
+            switch (stage)
             {
-                tex.text = "TEST";
-                if (next)
-                {
-                    stage++;
-                }
+                case 0:
+                    tex.text = "テスト";
+                    if (next)
+                    {
+                        stage++;
+                    }
+                    break;
+                case 1:
+                    tex.text = "";
+                    GameObject.Find("Sanctuaries").GetComponent<SanctuariesController>().sanc.phase++;
+                    break;
             }
-            else if(stage == 1)
-            {
-                tex.text = "";
-            }
+            
         }
     }
 }
