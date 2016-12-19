@@ -33,7 +33,7 @@ public class BasicMovement : MonoBehaviour {
                 if (NextPosition.x >= -0.1 && NextPosition.x <= (row -1) * 2 + 0.1 && NextPosition.z >= -0.1 && NextPosition.z <= (col-1) * 2 + 0.1)
                 {
                     IsMoving = true;
-                    vero = MoveObj.transform.forward;
+                    vero = 2 * MoveObj.transform.forward;
                     NextRotation = new Quaternion(0, 0, 0, 0);
                     sfu.PushStack(MoveObj);
                     if (obj.name == "Player")
@@ -72,9 +72,9 @@ public class BasicMovement : MonoBehaviour {
         {
             MoveTimer += Time.deltaTime;
 
-            if (MoveTimer < 1f && NextPosition != Vector3.zero)
+            if (MoveTimer < 1.5f && NextPosition != Vector3.zero)
             {
-                obj.transform.position = Vector3.SmoothDamp(obj.transform.position, NextPosition, ref vero, 0.4f);
+                obj.transform.position = Vector3.SmoothDamp(obj.transform.position, NextPosition, ref vero, 0.5f);
             }
             else if (NextPosition != Vector3.zero)
             {
@@ -88,7 +88,7 @@ public class BasicMovement : MonoBehaviour {
                 MoveTimer = 0;
             }
 
-            if (MoveTimer < 1f && NextRotation != new Quaternion(0, 0, 0, 0))
+            if (MoveTimer < 1.5f && NextRotation != new Quaternion(0, 0, 0, 0))
             {
                 obj.transform.rotation = Quaternion.Slerp(obj.transform.rotation, NextRotation, 0.1f);
             }
