@@ -44,7 +44,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1333621274337746
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 4191634857915150}
   - component: {fileID: 198245141515698096}
   - component: {fileID: 199451803289002110}
+  - component: {fileID: 114628020307670060}
   m_Layer: 0
   m_Name: BlueSanc
   m_TagString: Untagged
@@ -134,6 +135,18 @@ Transform:
   m_Father: {fileID: 4191634857915150}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114628020307670060
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1333621274337746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a43cb16dd6cdd004c8eba48da5dec3d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 6
 --- !u!198 &198245141515698096
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -5642,13 +5655,13 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 3
     enabled: 1
-    type: 4
+    type: 5
     radius: 1
     angle: 0
     length: 5
-    boxX: 1
-    boxY: 1
-    boxZ: 1
+    boxX: 2
+    boxY: 2
+    boxZ: 2
     arc: 360
     placementMode: 1
     m_Mesh: {fileID: 4300000, guid: 8528e591560fe41729d156088e136aaa, type: 3}
