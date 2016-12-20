@@ -44,6 +44,7 @@ public class TutorialWaves : SanctuariesController {
                     {
                         HereIsSanctuary(1, 2, 'g');
                         HereIsSanctuary(1, 2, 'r');
+                        CrossIsSanctuary(0, 2, 'b');
                         SancHasDeployed = true;
                     }
                     Message();
@@ -100,7 +101,80 @@ public class TutorialWaves : SanctuariesController {
         }
         Instantiate(Resources.Load("Prefabs/HereIsSanc"), new Vector3(row * 2, 0.1f * (row + col) + 2.4f, col * 2), Quaternion.Euler(-90, -45, -90));
     }
-
+    void CrossIsSanctuary(int row, int col, char faith)
+    {
+        int Maxrow = transform.GetComponent<SizeOfSanc>().row;
+        int Maxcol = transform.GetComponent<SizeOfSanc>().column;
+        if (faith == 'r')
+        {
+            for(int i = 0; i < Maxrow; i++)
+            {
+                if(row - i >= 0)
+                {
+                    fields[row - i][col].red = true;
+                }
+                if (col - i >= 0)
+                {
+                    fields[row][col - i].red = true;
+                }
+                if(row + i < Maxrow)
+                {
+                    fields[row + i][col].red = true;
+                }
+                if(col + i < Maxcol)
+                {
+                    fields[row][col + i].red = true;
+                }
+            }
+            Instantiate(Resources.Load("Prefabs/CrossIsSanc"), new Vector3(row * 2, 0.1f * (row + col) + 2.4f, col * 2), Quaternion.Euler(-90, -45, -90));
+        }
+        if (faith == 'b')
+        {
+            for (int i = 0; i < Maxrow; i++)
+            {
+                if (row - i >= 0)
+                {
+                    fields[row - i][col].blue = true;
+                }
+                if (col - i >= 0)
+                {
+                    fields[row][col - i].blue = true;
+                }
+                if (row + i < Maxrow)
+                {
+                    fields[row + i][col].blue = true;
+                }
+                if (col + i < Maxcol)
+                {
+                    fields[row][col + i].blue = true;
+                }
+            }
+            Instantiate(Resources.Load("Prefabs/CrossIsSanc"), new Vector3(row * 2, 0.1f * (row + col) + 2.4f, col * 2), Quaternion.Euler(-90, -45, -90));
+        }
+        if (faith == 'g')
+        {
+            for (int i = 0; i < Maxrow; i++)
+            {
+                if (row - i >= 0)
+                {
+                    fields[row - i][col].green = true;
+                }
+                if (col - i >= 0)
+                {
+                    fields[row][col - i].green = true;
+                }
+                if (row + i < Maxrow)
+                {
+                    fields[row + i][col].green = true;
+                }
+                if (col + i < Maxcol)
+                {
+                    fields[row][col + i].green = true;
+                }
+            }
+            Instantiate(Resources.Load("Prefabs/CrossIsSanc"), new Vector3(row * 2, 0.1f * (row + col) + 2.4f, col * 2), Quaternion.Euler(-90, -45, -90));
+        }
+    }
     void Message()
     {
         message.Make(phase);
